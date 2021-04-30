@@ -26,3 +26,4 @@ git add . && git commit -m "update Readme.md"
 
 git remote add origin https://github.com/kritikawin/winequality.git
 git branch -M main
+git push origin main
