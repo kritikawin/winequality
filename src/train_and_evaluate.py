@@ -68,14 +68,14 @@ def train_and_evaluate(config_path):
             "mae": mae,
             "r2": r2
         }
-        
+        json.dump(scores, f, indent = 4)
 
     with open(params_file, "w") as f:
         params = {
-            "rmse": rmse,
-            "mae": mae,
-            "r2": r2
+            "alpha": alpha,
+            "l1_ratio": l1_ratio,
         }
+        json.dump(params, f, indent = 4)
         
 #####################################################
 
