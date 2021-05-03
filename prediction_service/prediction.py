@@ -30,6 +30,7 @@ def predict(data):
     model_dir_path = config["webapp_model_dir"]
     model = joblib.load(model_dir_path)
     prediction = model.predict(data).tolist()[0]
+    
     try:
         if 3 <= prediction <= 8:
             return prediction
@@ -53,7 +54,6 @@ def validate_input(dict_request):
 
     def _validate_values(col, val):
         schema = get_schema()
-
         if not (schema[col]["min"] <= float(dict_request[col]) <= schema[col]["max"]) :
             raise NotInRange
 
@@ -80,13 +80,12 @@ def api_response(dict_request):
             return response
             
     except NotInRange as e:
-        response = {"the_exected_range": get_schema(), "response": str(e) }
+        response = {"the_expected_range": get_schema(), "response": str(e) }
         return response
 
     except NotInCols as e:
-        response = {"the_exected_cols": get_schema().keys(), "response": str(e) }
+        response = {"the_expected_cols": get_schema().keys(), "response": str(e) }
         return response
-
 
     except Exception as e:
         response = {"response": str(e) }
